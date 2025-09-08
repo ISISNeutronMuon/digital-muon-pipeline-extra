@@ -19,7 +19,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: nexus-writer
-          image: ghcr.io/stfc-icd-research-and-design/supermusr-nexus-writer:32ea120bbb3e85e5f31dfdbdd1205ad919f9d100
+          image: ghcr.io/stfc-icd-research-and-design/supermusr-nexus-writer:a00987c4d6c88cbcefbc71c89c3f1ed71370a723
           args:
             - --broker=130.246.53.247:9092
             - --consumer-group=nexus-writer
@@ -32,8 +32,8 @@ spec:
             - --event-list-chunk-size=16384
             - --otel-endpoint=http://172.16.105.83:4317/v1/traces
             - --otel-namespace=pipeline-musr
-            - --file-name=/local
-            - --archive-name=/archive/incoming/musr
+            - --local-path=/local
+            - --archive-path=/archive/incoming/musr
           env:
             - name: RUST_LOG
               value: "debug"
