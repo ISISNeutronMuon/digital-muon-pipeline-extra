@@ -20,7 +20,7 @@ spec:
           image: ghcr.io/stfc-icd-research-and-design/supermusr-trace-viewer:2c11a00cff1c891aedd9ac75540c52dfb8847d1d
           args:
             - --broker=130.246.53.247:9092
-            - --group=trace-viewer-0
+            - --consumer-group=trace-viewer-0
             - --trace-topic=daq-events
             - --digitiser-event-topic=frame-events
             - --broker-name="MuSR (main spectrometer)"
@@ -60,6 +60,7 @@ metadata:
 spec:
   entryPoints:
     - web
+    - websecure
   routes:
     - kind: Rule
       match: Host(`ndw2982.isis.cclrc.ac.uk`) && PathPrefix(`/trace-viewer`)
