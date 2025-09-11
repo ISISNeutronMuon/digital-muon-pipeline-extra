@@ -1,0 +1,68 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trace-viewer
+  namespace: pipeline-musr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: trace-viewer
+  template:
+    metadata:
+      labels:
+        app: trace-viewer
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: trace-viewer
+          image: ghcr.io/stfc-icd-research-and-design/supermusr-trace-viewer:2c11a00cff1c891aedd9ac75540c52dfb8847d1d
+          args:
+            - --broker=130.246.53.247:9092
+            - --group=trace-viewer-0
+            - --trace-topic=daq-events
+            - --digitiser-event-topic=frame-events
+            - --broker-name="MuSR (main spectrometer)"
+          env:
+            - name: RUST_LOG
+              value: "debug"
+          resources:
+            limits:
+              memory: 500Mi
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: trace-viewer
+  namespace: pipeline-musr
+spec:
+  selector:
+    app: trace-viewer
+  ports:
+    - name: http
+      port: 3000
+      targetPort: 3000
+      protocol: TCP
+  type: ClusterIP
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: trace-viewer-http
+  namespace: pipeline-musr
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`ndw2982.isis.cclrc.ac.uk`) && PathPrefix(`/trace-viewer`)
+      services:
+        - name: trace-viewer
+          port: 3000
