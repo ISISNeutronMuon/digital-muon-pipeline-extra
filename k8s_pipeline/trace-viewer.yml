@@ -24,7 +24,7 @@ spec:
             - --trace-topic=daq-events
             - --digitiser-event-topic=frame-events
             - --broker-name="MuSR (main spectrometer)"
-            - --server-path=trace-viewer/
+            # - --server-path=trace-viewer/
           env:
             - name: RUST_LOG
               value: "debug"
@@ -64,7 +64,8 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`ndw2982.isis.cclrc.ac.uk`) && PathPrefix(`/trace-viewer`)
+      # match: Host(`ndw2982.isis.cclrc.ac.uk`) && PathPrefix(`/trace-viewer`)
+      match: Host(`ndw2982.isis.cclrc.ac.uk`)
       middlewares:
         - name: strip-trace-viewer-prefix
       services:
