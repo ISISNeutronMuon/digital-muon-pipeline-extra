@@ -21,7 +21,7 @@ spec:
           args:
             - --broker=130.246.53.247:9092
             - --consumer-group=trace-viewer-0
-            - --trace-topic=daq-events
+            - --trace-topic=traces-in
             - --digitiser-event-topic=frame-events
             - --broker-name="MuSR (main spectrometer)"
             # - --server-path=trace-viewer/
