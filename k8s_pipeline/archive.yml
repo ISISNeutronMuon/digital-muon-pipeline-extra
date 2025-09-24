@@ -3,7 +3,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: archive
-  namespace: pipeline-musr
+  namespace: digital-muon-pipeline
   annotations:
     pv.kubernetes.io/provisioned-by: smb.csi.k8s.io
 spec:
@@ -23,15 +23,15 @@ spec:
     volumeAttributes:
       source: "//ISISARVR55.isis.cclrc.ac.uk/SuperMusrTestDataBackup$"
     nodeStageSecretRef:
-      name: archive-creds
-      namespace: pipeline-musr
+      name: archive-credentials
+      namespace: digital-muon-pipeline
 
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: archive
-  namespace: pipeline-musr
+  namespace: digital-muon-pipeline
 spec:
   accessModes:
     - ReadWriteMany
@@ -40,15 +40,3 @@ spec:
       storage: 1000Gi
   volumeName: archive
   storageClassName: ""
-
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: archive-creds
-  namespace: pipeline-musr
-type: Opaque
-stringData:
-  username: SuperMusr_mgr
-  password: ""
-  domain: ISIS
