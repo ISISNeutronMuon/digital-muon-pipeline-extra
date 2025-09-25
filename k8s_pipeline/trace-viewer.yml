@@ -17,7 +17,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: trace-viewer
-          image: ghcr.io/stfc-icd-research-and-design/supermusr-trace-viewer:58f442f32709b9483d407a2a023a0e470ef577c3
+          image: ghcr.io/stfc-icd-research-and-design/supermusr-trace-viewer:33e96f76f4dc483642b29b4b38bfe6e3f20ef5b1
           args:
             - --broker=130.246.53.247:9092
             - --consumer-group=trace-viewer-0
