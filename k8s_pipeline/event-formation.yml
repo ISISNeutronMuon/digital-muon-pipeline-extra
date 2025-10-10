@@ -35,7 +35,7 @@ spec:
             - --cool-off=0
           env:
             - name: RUST_LOG
-              value: "debug"
+              value: "info"
             - name: OTEL_LEVEL
               value: "none,trace_to_events=info,trace_to_events::channels=warn,trace_to_events::pulse_detection=warn"
           resources:
