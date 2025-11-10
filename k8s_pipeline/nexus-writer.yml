@@ -19,7 +19,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: nexus-writer
-          image: ghcr.io/stfc-icd-research-and-design/supermusr-nexus-writer:a00987c4d6c88cbcefbc71c89c3f1ed71370a723
+          image: ghcr.io/isisneutronmuon/digital-muon-nexus-writer:ec298582b40ad98dc251441cc58e914c47154066
           args:
             - --broker=130.246.53.247:9092
             - --consumer-group=nexus-writer

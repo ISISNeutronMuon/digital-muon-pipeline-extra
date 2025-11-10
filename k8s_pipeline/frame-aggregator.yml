@@ -19,7 +19,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: frame-aggregator
-          image: ghcr.io/stfc-icd-research-and-design/supermusr-digitiser-aggregator:a00987c4d6c88cbcefbc71c89c3f1ed71370a723
+          image: ghcr.io/isisneutronmuon/digital-muon-digitiser-aggregator:3fe5671f8e10bfdea781c5d6e695c2b1ee456251
           args:
             - --broker=130.246.53.247:9092
             - --group=digitiser-aggregator

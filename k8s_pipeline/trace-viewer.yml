@@ -17,7 +17,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: trace-viewer
-          image: ghcr.io/stfc-icd-research-and-design/supermusr-trace-viewer:33e96f76f4dc483642b29b4b38bfe6e3f20ef5b1
+          image: ghcr.io/isisneutronmuon/digital-muon-trace-viewer:6ac6787ae88e016990003c2d45f936d8d5c5781e
           args:
             - --broker=130.246.53.247:9092
             - --consumer-group=trace-viewer-0
